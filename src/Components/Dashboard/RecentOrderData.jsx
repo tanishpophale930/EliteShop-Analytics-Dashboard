@@ -1,0 +1,48 @@
+export const RecentOrderData = [
+    {
+        id: "#1",
+        product_id: "#4324",
+        name: "Rahul Parteki",
+        orderDate: "23rd May 2024",
+        orderTotal: "$482.23",
+        shippingAdress: "Shanto Nagar, Gurgaon 44215",
+        orderStatus: "PLACED",
+    },
+    {
+        id: "#2",
+        product_id: "#8435",
+        name: "Saniya Devi",
+        orderDate: "33rd May 2024",
+        orderTotal: "$812.59",
+        shippingAdress: "Tenali Nagar, Gurgaon 44425",
+        orderStatus: "CONFIRMED",
+    },
+    {
+        id: "#3",
+        product_id: "#1259",
+        name: "Narayan Sukdeve",
+        orderDate: "7th May 2024",
+        orderTotal: "$235.69",
+        shippingAdress: "Kusam Nagar, Gurgaon 44232",
+        orderStatus: "SHIPPED",
+    },
+    {
+        id: "#4",
+        product_id: "#5481",
+        name: "Shital Naik",
+        orderDate: "25th May 2024",
+        orderTotal: "$654.68",
+        shippingAdress: "Laxmi Nagar, Gurgaon 41972",
+        orderStatus: "OUT FOR DELIVERY",
+    },
+    {
+        id: "#5",
+        product_id: "#6345",
+        name: "Rushi Carrol",
+        orderDate: "29th May 2024",
+        orderTotal: "$482.26",
+        shippingAdress: "Telecom Nagar, Gurgaon 44232",
+        orderStatus: "DELIVERED",
+    },
+    
+]
