@@ -4,18 +4,22 @@ import { Link, useLocation } from 'react-router-dom'
 import { FcBullish } from 'react-icons/fc'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { DASHBOARD_SIDEBAR_LINKS, DASHBOARD_SIDEBAR_BOTTOM_LINKS } from './SideBarData';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const linkClass =
 	'flex items-center  gap-2 text-md mx-3 px-3 py-3 hover:bg-neutral-700 hover:no-underline active:bg-neutral-600 rounded-md '
 
 export default function Sidebar(){
+
+    const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
+
 	return (
     <div className='flex flex-col bg-neutral-900 w-60 h-screen'>
 
         <div className='flex items-center mt-6 mb-2 gap-3 ml-4  '>
           <FcBullish size={24}/>
-          <p className='text-white text-lg'> EliteCommerce </p>
+          <p className='text-white text-lg'> EliteShop </p>
         </div>
 
 
@@ -38,7 +42,15 @@ export default function Sidebar(){
 
           <div className='flex items-center gap-2 mb-2 mx-3 px-3 py-2 hover:bg-neutral-700 hover:no-underline active:bg-neutral-600 rounded-md'>
 			<HiOutlineLogout size={19} className='text-red-500 text-md' />
-            <Link className='text-red-500 text-md hover:no-underline' to="/logOut">LogOut</Link>
+            {
+				isAuthenticated? (
+                    <button className='text-red-500 text-md hover:no-underline' onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}> LogOut </button>
+                ) : (
+                    <button className='text-red-500 text-md hover:no-underline' onClick={loginWithRedirect}>Login</button>
+                )
+			}
+			
+			
           </div>
         </div>
     </div>
