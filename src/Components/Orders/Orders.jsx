@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import { RecentOrderData } from './RecentOrderData'
+import { RecentOrderData } from '../Dashboard/RecentOrderData'
 
 
 let getOrderStatus = (status) => {
@@ -51,30 +51,28 @@ let getOrderStatus = (status) => {
 }
 
 
-const RecentOrder = () => {
-
-  const firstFiveOrders = RecentOrderData.slice(0, 5);
+const Orders = () => {
 
   return (
-    <div className='flex-1 border border-gray-200 bg-white mt-4 rounded-sm'>
-        <h3 className='text-gray-700 font-medium text-center mt-4'>Recent Orders</h3>
+    <div className='flex-1 border border-gray-200 bg-white rounded-sm'>
+        
         <div className='border border-gray-200 rounded-sm border-x my-3 mx-3'>
           <table className='w-full h-full text-gray-700'>
             <thead>
-              <tr>
-                  <td>ID</td>
-                  <td>Product ID</td>
-                  <td>Customer Name</td>
-                  <td>Order Date</td>
-                  <td>Order Total</td>
-                  <td>Shiping Address</td>
-                  <td>Order Status</td>
+              <tr className='font-bold'>
+                  <td className='text-base'>ID</td>
+                  <td className='text-base'>Product ID</td>
+                  <td className='text-base'>Customer Name</td>
+                  <td className='text-base'>Order Date</td>
+                  <td className='text-base'>Order Total</td>
+                  <td className='text-base'>Shiping Address</td>
+                  <td className='text-base'>Order Status</td>
               </tr>  
             </thead>
 
             <tbody>
               {
-                firstFiveOrders.map((ele, index) => {
+                RecentOrderData.map((ele, index) => {
                   return (
                     <tr key={index}>
                       <td><Link to={`/order/${ele.id}`}>{ele.id}</Link></td>
@@ -95,4 +93,4 @@ const RecentOrder = () => {
   )
 }
 
-export default RecentOrder
+export default Orders

@@ -4,7 +4,7 @@ import Dashboard from '../Components/Dashboard/Dashboard';
 import Products from '../Components/Products';
 import Login from '../Components/Login';
 import { Route, Routes } from 'react-router-dom';
-import Orders from '../Components/Orders';
+import Orders from '../Components/Orders/Orders';
 import Customers from '../Components/Customers';
 import Transactions from '../Components/Transactions';
 import Messages from '../Components/Messages';
