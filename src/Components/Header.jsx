@@ -78,7 +78,7 @@ const Header = () => {
 								<Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-80">
 									<div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
 										<strong className="text-gray-700 font-medium">Notifications</strong>
-										<div className="mt-2 py-1 text-sm">This is notification panel.</div>
+										<div className="mt-2 py-1 text-sm">This is notification panel. No notifications yet.</div>
 									</div>
 								</Popover.Panel>
 							</Transition>
@@ -149,7 +149,9 @@ const Header = () => {
 							</Menu.Item>
 					</Menu.Items> 
 					</Transition>
-				</Menu>) : (<button onClick={() => loginWithRedirect()}>Log In</button>)}
+				</Menu>) : (
+					<button  className='border py-2 px-3 text-black rounded-md drop-shadow-3xl bg-red-300 hover:bg-red-600 hover:text-white font-semibold' onClick={() => loginWithRedirect()}>Log In</button>
+					)}
 
 				
 			</div>
