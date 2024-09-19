@@ -48,7 +48,7 @@ const Header = () => {
 								<Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-80">
 									<div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
 										<strong className="text-gray-700 font-medium">Messages</strong>
-										<div className="mt-2 py-1 text-sm">This is messages panel.</div>
+										<div className="mt-2 py-1 text-sm">No messages received.</div>
 									</div>
 								</Popover.Panel>
 							</Transition>
@@ -78,7 +78,7 @@ const Header = () => {
 								<Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-80">
 									<div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
 										<strong className="text-gray-700 font-medium">Notifications</strong>
-										<div className="mt-2 py-1 text-sm">This is notification panel. No notifications yet.</div>
+										<div className="mt-2 py-1 text-sm"> No notifications received.</div>
 									</div>
 								</Popover.Panel>
 							</Transition>
