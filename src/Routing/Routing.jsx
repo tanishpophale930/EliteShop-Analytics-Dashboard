@@ -18,8 +18,8 @@ const Routing = () => {
       <Routes>
             <Route path='/' element={<Layout/>}>
               <Route index element={<Dashboard/>}></Route>
-              <Route path="products" element={<Products/>}></Route>
               <Route path="orders" element={<Orders/>}></Route>
+              <Route path="products" element={<Products/>}></Route>
               <Route path="customers" element={<Customers/>}></Route>
               <Route path="transactions" element={<Transactions/>}></Route>
               <Route path="messages" element={<Messages/>}></Route>
