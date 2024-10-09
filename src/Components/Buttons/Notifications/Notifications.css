@@ -1,0 +1,65 @@
+.button {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:  rgb(241 245 249);
+  border-radius: 50%;
+  cursor: pointer;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.13);
+  border-width: 2px;
+  fill: #262626;
+}
+
+.bell {
+  width: 18px;
+}
+
+.bell path {
+  stroke: #737373;
+}
+
+.button:hover {
+  background-color: rgb(234 88 12);
+  color: rgb(255 255 255);
+  fill: white;
+}
+
+.button:hover .bell {
+  animation: bellRing 0.9s both;
+}
+
+/* bell ringing animation keyframes*/
+@keyframes bellRing {
+  0%,
+  100% {
+    transform-origin: top;
+  }
+
+  15% {
+    transform: rotateZ(10deg);
+  }
+
+  30% {
+    transform: rotateZ(-10deg);
+  }
+
+  45% {
+    transform: rotateZ(5deg);
+  }
+
+  60% {
+    transform: rotateZ(-5deg);
+  }
+
+  75% {
+    transform: rotateZ(2deg);
+  }
+}
+
+.button:active {
+  transform: scale(0.8);
+}

@@ -6,6 +6,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Login from './Login'
 import classNames from 'classnames'
 import LogOut from './LogOut';
+import Notifications from './Buttons/Notifications/Notifications';
+import SearchButton from './Buttons/SearchButton/SearchButton';
+import MessagesButton from './Buttons/MessagesButton/MessagesButton';
 
 
 const Header = () => {
@@ -15,26 +18,35 @@ const Header = () => {
   const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
   return (
-    <div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
+    <div className="bg-white h-16 w-full px-4 flex items-center border-b border-gray-200 justify-between">
+			
+			{/*  //Search Button Old
 			<div className="relative">
 				<HiOutlineSearch fontSize={20} className="text-gray-400 absolute top-1/2 left-3 -translate-y-1/2" />
 				<input
 					type="text"
 					placeholder="Search..."
-					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[24rem] h-10 pl-11 pr-4 rounded-sm"
+					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[24rem] h-10 pl-11 pr-4 rounded-md"
 				/>
 			</div>
-			<div className="flex items-center gap-2 mr-2">
+			*/}
+
+
+			<div>
+				<SearchButton/>
+			</div>
+
+			<div className="flex items-center gap-3 mr-2">
 				<Popover className="relative">
 					{({ open }) => (
 						<>
 							<Popover.Button
 								className={classNames(
-									open && 'bg-gray-100',
-									'group inline-flex items-center rounded-sm p-1.5 text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-gray-100'
+									open ,
+									'group inline-flex items-center rounded-sm p-1.5 hover:text-opacity-100 focus:outline-none '
 								)}
 							>
-								<HiOutlineChatAlt fontSize={24} />
+								<MessagesButton/>
 							</Popover.Button>
 							<Transition
 								as={Fragment}
@@ -55,17 +67,18 @@ const Header = () => {
 						</>
 					)}
 				</Popover>
+
 				<Popover className="relative">
 					{({ open }) => (
 						<>
 							<Popover.Button
 								className={classNames(
-									open && 'bg-gray-100',
-									'group inline-flex items-center rounded-sm p-1.5 text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-gray-100'
+									open ,
+									'group inline-flex items-center rounded-sm p-1.5 text-gray-700 hover:text-opacity-100 focus:outline-none'
 								)}
 							>
-								<HiOutlineBell fontSize={24} />
-							</Popover.Button>
+								<Notifications/>
+							</Popover.Button>	
 							<Transition
 								as={Fragment}
 								enter="transition ease-out duration-200"
@@ -150,7 +163,7 @@ const Header = () => {
 					</Menu.Items> 
 					</Transition>
 				</Menu>) : (
-					<button  className='border py-2 px-3 text-black rounded-md drop-shadow-3xl bg-red-300 hover:bg-red-600 hover:text-white font-semibold' onClick={() => loginWithRedirect()}>Log In</button>
+					<button  className='border-2 py-1 px-3 text-lg rounded-md drop-shadow-3xl text-neutral-800 tracking-normal bg-slate-100 --tw-shadow-color: #f1f5f9; hover:bg-red-600 hover:text-white font-semibold ' onClick={() => loginWithRedirect()}>Sign Up</button>
 					)}
 
 				

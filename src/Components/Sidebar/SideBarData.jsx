@@ -24,12 +24,6 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <HiOutlineShoppingCart />
 	},
 	{
-		key: 'products',
-		label: 'Products',
-		path: '/products',
-		icon: <HiOutlineCube />
-	},
-	{
 		key: 'customers',
 		label: 'Customers',
 		path: '/customers',
@@ -40,6 +34,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		label: 'Transactions',
 		path: '/transactions',
 		icon: <HiOutlineDocumentText />
+	},
+	{
+		key: 'products',
+		label: 'Products',
+		path: '/products',
+		icon: <HiOutlineCube />
 	},
 	{
 		key: 'messages',

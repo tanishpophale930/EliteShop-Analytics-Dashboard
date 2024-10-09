@@ -1,10 +1,14 @@
 import React, {useMemo} from 'react'
 import {useTable, useSortBy, useGlobalFilter, usePagination, useRowSelect} from 'react-table'
 import { Link } from 'react-router-dom'
-import {format} from "date-fns"
-import { RecentOrderData } from '../Dashboard/RecentOrderData'
-import TableSearchButton from '../Buttons/TableSearchButton/TableSearchButton'
+import { TransactionsData } from './TransactionsData'
+import NextArrowButton from '../Buttons/NextArrowButton/NextArrowButton'
 import ExportButton from '../Buttons/ExportButton/ExportButton'
+import "../Buttons/CheckBox/CheckBox.css"
+import * as XLSX from 'xlsx';
+import TableSearchButton from '../Buttons/TableSearchButton/TableSearchButton'
+
+
 
 let GlobalFilter = ({filter, setFilter}) => {
   return (
@@ -14,52 +18,6 @@ let GlobalFilter = ({filter, setFilter}) => {
   )
 }
 
-let getOrderStatus = (status) => {
-  switch(status) {
-      case 'PLACED':
-        return(
-          <span className='w-32 capitalize text-center inline-block rounded-md border border-sky-600 bg-sky-100 text-sm px-2 py-1 text-sky-600 '>
-               {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-      
-      case 'CONFIRMED':
-        return(
-          <span className='w-32 capitalize rounded-md text-center inline-block border border-orange-600 text-orange-600 bg-orange-100 text-sm px-2 py-1'>
-               {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-
-
-      case 'SHIPPED':
-        return(
-          <span className='w-32 capitalize rounded-md border border-teal-600 text-center inline-block text-teal-600 bg-teal-100 text-sm px-2 py-1'>
-            {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-
-      case 'OUT FOR Delivery':
-        return(
-          <span className='w-32 capitalize py-1 px-2 rounded-md border border-yellow-600 text-center inline-block text-xs text-yellow-600 bg-yellow-100'>
-              {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-
-      case 'DELIVERED':
-        return(
-          <span className='w-32 capitalize rounded-md text-center inline-block border border-green-600 text-green-600 bg-green-100 text-sm px-2 py-1'>
-              {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-      
-      default:
-        return(
-          <span className='w-32 capitalize rounded-md border border-gray-600 text-center inline-block text-gray-600 bg-gray-100 text-sm px-2 py-1'>
-              {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-  }
-}
 
 const Checkbox = React.forwardRef(({ indeterminate, ...rest}, ref) => {
   const defaultRef = React.useRef()
@@ -70,48 +28,99 @@ const Checkbox = React.forwardRef(({ indeterminate, ...rest}, ref) => {
   }, [resolvedRef, indeterminate])
 
   return (
-    <input 
-      type="checkbox" ref={resolvedRef} {...rest} 
-    />
+    <>
+    <input type='checkbox' ref={resolvedRef} {...rest}/>
+    
+    </>
   )
 })
 
 
+let paymentMode = (status) => {
+  switch(status) {
+      case 'Credit Card':
+        return(
+          <span className='w-32 inline-block capitalize rounded-md border border-sky-600 text-center bg-sky-100 text-sm px-2 py-1 text-sky-600 '>
+               {status.replaceAll('_', ' ').toLowerCase()}
+          </span>
+        )
+      
+      case 'UPI':
+        return(
+          <span className='w-32 inline-block capitalize rounded-md border border-orange-600 text-center text-orange-600 bg-orange-100 text-sm px-2 py-1'>
+               {status.replaceAll('_', ' ').toUpperCase()}
+          </span>
+        )
+
+
+      case 'Debit Card':
+        return(
+          <span className='w-32 inline-block capitalize rounded-md border border-teal-600 text-center text-teal-600 bg-teal-100 text-sm px-2 py-1'>
+            {status.replaceAll('_', ' ').toLowerCase()}
+          </span>
+        )
+
+      case 'Cash':
+        return(
+          <span className='w-32 inline-block capitalize rounded-md border border-green-600 text-center text-green-600 bg-green-100 text-sm px-2 py-1'>
+              {status.replaceAll('_', ' ').toLowerCase()}
+          </span>
+        )
+      
+      default:
+        return(
+          <span className='w-32 inline-block capitalize rounded-md border border-gray-600 text-center text-gray-600 bg-gray-100 text-sm px-2 py-1'>
+              {status.replaceAll('_', ' ').toLowerCase()}
+          </span>
+        )
+  }
+}
+
+
 let COLUMNS = [
   {
+    Header: 'Payment ID',
+    accessor: 'pay_id',
+    Cell: ({value}) => <Link to={`/payment/${value}`} className='text-gray-700 hover:no-underline'>{value}</Link>,
+  },
+  {
     Header: 'Order ID',
-    accessor: 'id',
-    Cell: ({value}) => <Link to={`/order/${value}`} className='text-blue-400'>{value}</Link>,
+    accessor: 'ord_id',
+    Cell: ({ value }) => <Link to={`/order/${value}`} className='text-gray-700 hover:no-underline'>{value}</Link>,
   },
   {
     Header: 'Customer Name',
     accessor: 'name',
-    Cell: ({ value }) => <Link to={`/customer/${value}`}>{value}</Link>,
   },
   {
-    Header: 'Order Date',
-    accessor: 'orderDate',
+    Header: 'Email',
+    accessor: 'email',
   },
   {
-    Header: 'Order Total',
-    accessor: 'orderTotal',
+    Header: 'Mobile No',
+    accessor: 'phone_no',
   },
   {
-    Header: 'Shipping Address',
-    accessor:'shippingAdress',
+    Header: 'Payment Date',
+    accessor:'payment_date',
   },
   {
-    Header: 'Order Status',
-    accessor: 'orderStatus',
-    Cell: ({ value }) => getOrderStatus(value), // Use the getOrderStatus function
+    Header: "Total Amount",
+    accessor: 'transaction_amount',
+  },
+  {
+    Header: 'Mode of Payment',
+    accessor: 'mode_of_payment',
+    Cell: ({ value }) => paymentMode(value),
   },
 ]
 
 
-const Orders = () => {
+
+const Transactions = () => {
 
   const columns = useMemo(()=> COLUMNS, [])
-  const data = useMemo(()=> RecentOrderData, [])
+  const data = useMemo(()=> TransactionsData, [])
    
   const tableInstance = useTable({
     columns,
@@ -149,16 +158,17 @@ const Orders = () => {
     canNextPage,
     canPreviousPage,
     pageOptions,
+    state,
     gotoPage,
     pageCount,
     setPageSize,
-    selectedFlatRows,
     prepareRow, 
-    state, 
+    selectedFlatRows,
     setGlobalFilter
   } = tableInstance
 
   const {globalFilter, pageIndex, pageSize} = state
+
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(data)
@@ -168,17 +178,17 @@ const Orders = () => {
   }
 
   return (
-    <div className='flex-1 border border-gray-200 bg-white rounded-sm'>
-
+    <div className='flex-1 border border-gray-200 bg-white rounded-md'>
       <div className='flex items-center justify-between my-3 mx-3'>
-        <p className='text-3xl font-bold tracking-wide'>Orders Report</p>
+        <p className='text-3xl font-bold tracking-wide'>Transactions Report</p>
 
         {/* Code for Exporting in Excel  */}
         <div>
             <ExportButton  exportToExcel={exportToExcel}/>
         </div>
       </div>
-      
+
+
       {/* Code for Show Entries  */}
       <div className='flex items-center justify-between mt-6 mb-5 mx-3'>
         <div className="flex items-center space-x-2">
@@ -205,8 +215,8 @@ const Orders = () => {
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
         </div>
       </div>
-
-      <div className='border border-gray-200 rounded-sm border-x my-3 mx-3'>
+      
+      <div className='border border-gray-200 rounded-md  my-3 mx-3'>
         <table {...getTableProps()} className='w-full h-full text-gray-700 table-auto'> 
           <thead>
             {
@@ -242,6 +252,35 @@ const Orders = () => {
           </tbody>
         </table>
       </div>
+
+      
+      
+      {/* // Go to  Page functionality
+      <span>
+        | Go To Page :{' '}
+        <input
+          type='number'
+          defaultValue={pageIndex + 1}
+          onChange={(e) => {
+            const pageNumber = e.target.value  ? Number(e.target.value) -1: 0
+            gotoPage(pageNumber)
+          }}
+          style={{width: '50px'}}
+        />
+      </span>
+      */}
+
+      {/* // Page 1 of 3 - Code
+      <div className=''>
+        <span className=''>
+          Page{' '}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
+      </div>
+      */}
+
 
       <div className='flex items-center justify-between'>
         <div className="flex items-center justify-end px-4 py-3 text-gray-700">
@@ -290,10 +329,11 @@ const Orders = () => {
             Next
           </button>
 
+          
         </div>
-        </div>
+      </div>
     </div>
   )
 }
 
-export default Orders;
+export default Transactions

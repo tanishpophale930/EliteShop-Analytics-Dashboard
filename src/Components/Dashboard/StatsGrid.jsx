@@ -3,7 +3,7 @@ import { StatsGridData } from './StatsGridData'
 
 const StatsGrid = () => {
   return (
-    <div className='flex gap-5 my-4'>
+    <div className='flex flex-col md:flex-row gap-5 my-4 w-full'>
         {
           StatsGridData.map((ele, index) => {
             return(

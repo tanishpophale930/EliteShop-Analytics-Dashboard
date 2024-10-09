@@ -6,7 +6,7 @@ import { PopularProductsData } from './PopularProductsData'
 const PopularProducts = () => {
   return (
     <div className="w-[20rem] bg-white p-4 rounded-sm border border-gray-200 mt-4">
-			<p className="text-gray-700 font-medium text-center">Popular Products</p>
+			<p className=" text-gray-800 text-lg font-bold px-4 tracking-wide text-center">Popular Products</p>
 			<div className="mt-4 flex flex-col gap-3">
 				{PopularProductsData.map((product) => (
 					<Link

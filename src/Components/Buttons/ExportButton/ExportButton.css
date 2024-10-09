@@ -1,0 +1,66 @@
+/* From Uiverse.io by Tsiangana */ 
+.botao {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  transition: .5s linear;
+  box-shadow: 1px 1px rgba(107, 221, 215, 0.37);
+  padding: 5px 10px;
+  background: rgb(241 245 249);
+  /*background: linear-gradient(160deg, rgba(59, 190, 230, 1) 0%, rgba(59, 190, 230, 1) 5%, rgba(59, 190, 230, 1) 11%, rgba(59, 190, 230, 1) 57%, rgba(0, 212, 255, 1) 71%);*/
+  font-family: Roboto, sans-serif;
+  /* font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;*/
+  /*filter: drop-shadow(0 0 10px rgba(47, 93, 197, 0.568));*/
+  /* transition: .5s linear; */
+  position: relative;
+  stroke: rgb(38 38 38);
+}
+
+
+
+/* Trigger the animation and element changes on click, not hover */ 
+.botao.clicked {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: .5s linear;
+}
+
+.botao:hover {
+  background-color: rgb(248 113 113);
+  stroke: white;
+}
+
+.botao .mysvg {
+  display: inline;
+}
+
+.botao.clicked::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border: 2.5px solid transparent;
+  border-top: 2.5px solid rgb(23 23 23);
+  border-right: 2.5px solid rgb(23 23 23);
+  border-radius: 50%;
+  animation: animateC 2s linear infinite;
+}
+
+/* Rotate animation */ 
+@keyframes animateC {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+

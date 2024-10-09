@@ -10,12 +10,12 @@ const Dashboard = () => {
     <div className='flex flex-col gap-4'>
         <StatsGrid />
 
-        <div className='flex flex-row gap-3 justify-center w-full'>
+        <div className='flex flex-col md:flex-row gap-3 justify-center w-full'>
           <TransactionsChart/>
           <BuyerProfilePieChart/>
         </div>
 
-        <div className='flex flex-row gap-3 w-full'>
+        <div className='flex flex-col md:flex-row gap-3 w-full'>
           <RecentOrder />
           <PopularProducts/>
         </div>

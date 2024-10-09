@@ -5,8 +5,8 @@ import Products from '../Components/Products';
 import Login from '../Components/Login';
 import { Route, Routes } from 'react-router-dom';
 import Orders from '../Components/Orders/Orders';
-import Customers from '../Components/Customers';
-import Transactions from '../Components/Transactions';
+import Customers from '../Components/Customers/Customers';
+import Transactions from '../Components/Transactions/Transactions';
 import Messages from '../Components/Messages';
 import LogOut from '../Components/LogOut';
 import Settings from '../Components/Settings';
@@ -19,9 +19,9 @@ const Routing = () => {
             <Route path='/' element={<Layout/>}>
               <Route index element={<Dashboard/>}></Route>
               <Route path="orders" element={<Orders/>}></Route>
-              <Route path="products" element={<Products/>}></Route>
               <Route path="customers" element={<Customers/>}></Route>
               <Route path="transactions" element={<Transactions/>}></Route>
+              <Route path="products" element={<Products/>}></Route>
               <Route path="messages" element={<Messages/>}></Route>
               <Route path="settings" element={<Settings/>}></Route>
               <Route path="support" element={<Support/>}></Route>

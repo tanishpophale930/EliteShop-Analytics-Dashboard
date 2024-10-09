@@ -2,9 +2,10 @@ import React, {useMemo} from 'react'
 import {useTable, useSortBy, useGlobalFilter, usePagination, useRowSelect} from 'react-table'
 import { Link } from 'react-router-dom'
 import {format} from "date-fns"
-import { RecentOrderData } from '../Dashboard/RecentOrderData'
+import { customerData } from './CustomersData'
 import TableSearchButton from '../Buttons/TableSearchButton/TableSearchButton'
 import ExportButton from '../Buttons/ExportButton/ExportButton'
+
 
 let GlobalFilter = ({filter, setFilter}) => {
   return (
@@ -14,52 +15,6 @@ let GlobalFilter = ({filter, setFilter}) => {
   )
 }
 
-let getOrderStatus = (status) => {
-  switch(status) {
-      case 'PLACED':
-        return(
-          <span className='w-32 capitalize text-center inline-block rounded-md border border-sky-600 bg-sky-100 text-sm px-2 py-1 text-sky-600 '>
-               {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-      
-      case 'CONFIRMED':
-        return(
-          <span className='w-32 capitalize rounded-md text-center inline-block border border-orange-600 text-orange-600 bg-orange-100 text-sm px-2 py-1'>
-               {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-
-
-      case 'SHIPPED':
-        return(
-          <span className='w-32 capitalize rounded-md border border-teal-600 text-center inline-block text-teal-600 bg-teal-100 text-sm px-2 py-1'>
-            {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-
-      case 'OUT FOR Delivery':
-        return(
-          <span className='w-32 capitalize py-1 px-2 rounded-md border border-yellow-600 text-center inline-block text-xs text-yellow-600 bg-yellow-100'>
-              {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-
-      case 'DELIVERED':
-        return(
-          <span className='w-32 capitalize rounded-md text-center inline-block border border-green-600 text-green-600 bg-green-100 text-sm px-2 py-1'>
-              {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-      
-      default:
-        return(
-          <span className='w-32 capitalize rounded-md border border-gray-600 text-center inline-block text-gray-600 bg-gray-100 text-sm px-2 py-1'>
-              {status.replaceAll('_', ' ').toLowerCase()}
-          </span>
-        )
-  }
-}
 
 const Checkbox = React.forwardRef(({ indeterminate, ...rest}, ref) => {
   const defaultRef = React.useRef()
@@ -79,39 +34,42 @@ const Checkbox = React.forwardRef(({ indeterminate, ...rest}, ref) => {
 
 let COLUMNS = [
   {
-    Header: 'Order ID',
+    Header: 'Cust ID',
     accessor: 'id',
-    Cell: ({value}) => <Link to={`/order/${value}`} className='text-blue-400'>{value}</Link>,
+    Cell: ({value}) => <Link to={`/customerId/${value}`} className='text-blue-400'>{value}</Link>,
   },
   {
     Header: 'Customer Name',
     accessor: 'name',
-    Cell: ({ value }) => <Link to={`/customer/${value}`}>{value}</Link>,
+    Cell: ({ value }) => <Link to={`/customerName/${value}`} className='text-blue-400'>{value}</Link>,
   },
   {
-    Header: 'Order Date',
-    accessor: 'orderDate',
+    Header: 'Customer Email',
+    accessor: 'email',
   },
   {
-    Header: 'Order Total',
-    accessor: 'orderTotal',
+    Header: 'Gender',
+    accessor: 'gender',
+  },
+  {
+    Header: 'Age',
+    accessor: 'age',
+  },
+  {
+    Header: 'Mobile No',
+    accessor: 'phone_no',
   },
   {
     Header: 'Shipping Address',
-    accessor:'shippingAdress',
-  },
-  {
-    Header: 'Order Status',
-    accessor: 'orderStatus',
-    Cell: ({ value }) => getOrderStatus(value), // Use the getOrderStatus function
+    accessor:'shipping_address',
   },
 ]
 
 
-const Orders = () => {
+const Customers = () => {
 
   const columns = useMemo(()=> COLUMNS, [])
-  const data = useMemo(()=> RecentOrderData, [])
+  const data = useMemo(()=> customerData, [])
    
   const tableInstance = useTable({
     columns,
@@ -152,8 +110,8 @@ const Orders = () => {
     gotoPage,
     pageCount,
     setPageSize,
-    selectedFlatRows,
     prepareRow, 
+    selectedFlatRows,
     state, 
     setGlobalFilter
   } = tableInstance
@@ -170,8 +128,8 @@ const Orders = () => {
   return (
     <div className='flex-1 border border-gray-200 bg-white rounded-sm'>
 
-      <div className='flex items-center justify-between my-3 mx-3'>
-        <p className='text-3xl font-bold tracking-wide'>Orders Report</p>
+<div className='flex items-center justify-between my-3 mx-3'>
+        <p className='text-3xl font-bold tracking-wide'>Customers Report</p>
 
         {/* Code for Exporting in Excel  */}
         <div>
@@ -205,6 +163,7 @@ const Orders = () => {
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
         </div>
       </div>
+
 
       <div className='border border-gray-200 rounded-sm border-x my-3 mx-3'>
         <table {...getTableProps()} className='w-full h-full text-gray-700 table-auto'> 
@@ -296,4 +255,4 @@ const Orders = () => {
   )
 }
 
-export default Orders;
+export default Customers
