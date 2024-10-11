@@ -3,6 +3,7 @@ import { Menu, Popover, Transition } from '@headlessui/react'
 import { HiOutlineBell, HiOutlineSearch, HiOutlineChatAlt } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
+import { RxHamburgerMenu } from "react-icons/rx";
 import Login from './Login'
 import classNames from 'classnames'
 import LogOut from './LogOut';
@@ -11,14 +12,14 @@ import SearchButton from './Buttons/SearchButton/SearchButton';
 import MessagesButton from './Buttons/MessagesButton/MessagesButton';
 
 
-const Header = () => {
+const Header = ({Sidebartoggle, setSidebartoggle}) => {
   
   const navigate = useNavigate()
 
   const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
   return (
-    <div className="bg-white h-16 w-full px-4 flex items-center border-b border-gray-200 justify-between">
+    <div className="w-full bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
 			
 			{/*  //Search Button Old
 			<div className="relative">
@@ -32,7 +33,10 @@ const Header = () => {
 			*/}
 
 
-			<div>
+			<div className='flex gap-3 items-center'>
+                <div onClick={() => setSidebartoggle(!Sidebartoggle)} className='border-2 py-2 px-2 text-lg cursor-pointer rounded-full drop-shadow-3xl text-neutral-800 tracking-normal bg-slate-100 --tw-shadow-color: #f1f5f9; hover:bg-red-600 hover:text-white focus-outline-none'>
+				    <RxHamburgerMenu fontSize={21}  onClick={() => setSidebartoggle(!Sidebartoggle)}/>
+				</div>
 				<SearchButton/>
 			</div>
 

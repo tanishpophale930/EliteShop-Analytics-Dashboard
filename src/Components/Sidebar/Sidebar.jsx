@@ -10,12 +10,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 const linkClass =
 	'flex items-center  gap-2 text-md mx-3 px-3 py-3 hover:bg-neutral-700 hover:no-underline active:bg-neutral-600 rounded-md '
 
-export default function Sidebar(){
+export default function Sidebar({Sidebartoggle}){
 
     const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
 	return (
-    <div className='flex flex-col bg-neutral-900 w-60 h-screen'>
+    <div className={`${Sidebartoggle ? "block" : "hidden"} w-60 flex flex-col bg-neutral-900  h-full`} >
 
         <div className='flex items-center mt-6 mb-2 gap-3 ml-4  '>
           <FcBullish size={24}/>
@@ -73,9 +73,3 @@ function SidebarLink({link}){
 		</Link>
 	)
 }
-
-
-
-
-
-
