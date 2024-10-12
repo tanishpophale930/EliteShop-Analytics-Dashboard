@@ -7,10 +7,10 @@ const Layout = () => {
   const [Sidebartoggle, setSidebartoggle] = useState(true); // Sidebar hidden by default
 
   return (
-    <div className='bg-neutral-100 h-screen w-screen overflow-hidden flex flex-row '>
+    <div className='h-screen w-screen md:w-screen bg-neutral-100 overflow-hidden flex flex-row '>
         {/* Sidebar should be shown or hidden based on the Sidebartoggle */}
         <Sidebar Sidebartoggle={Sidebartoggle} setSidebartoggle={setSidebartoggle} />
-        <div className='flex flex-col flex-1'>
+        <div className='w-screen md:w-screen flex flex-col flex-1'>
           <Header Sidebartoggle={Sidebartoggle} setSidebartoggle={setSidebartoggle} />
           <div className='flex-1 p-4 min-h-0 overflow-auto'>
             <Outlet/>

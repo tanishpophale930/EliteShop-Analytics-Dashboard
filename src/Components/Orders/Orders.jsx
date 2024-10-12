@@ -2,6 +2,7 @@ import React, {useMemo} from 'react'
 import {useTable, useSortBy, useGlobalFilter, usePagination, useRowSelect} from 'react-table'
 import { Link } from 'react-router-dom'
 import {format} from "date-fns"
+import * as XLSX from 'xlsx';
 import { RecentOrderData } from '../Dashboard/RecentOrderData'
 import TableSearchButton from '../Buttons/TableSearchButton/TableSearchButton'
 import ExportButton from '../Buttons/ExportButton/ExportButton'
@@ -171,102 +172,90 @@ const Orders = () => {
     <div className='flex-1 border border-gray-200 bg-white rounded-sm'>
 
       <div className='flex items-center justify-between my-3 mx-3'>
-        <p className='text-3xl font-bold tracking-wide'>Orders Report</p>
+        <p className='text-xl sm:text-3xl font-bold tracking-wide'>Orders Report</p>
 
-        {/* Code for Exporting in Excel  */}
+        {/* Code for Exporting in Excel */}
         <div>
-            <ExportButton  exportToExcel={exportToExcel}/>
+            <ExportButton exportToExcel={exportToExcel} />
         </div>
       </div>
-      
-      {/* Code for Show Entries  */}
-      <div className='flex items-center justify-between mt-6 mb-5 mx-3'>
+
+      {/* Code for Show Entries */}
+      <div className='flex flex-col sm:flex-row items-center justify-between mt-6 mb-5 mx-3'>
         <div className="flex items-center space-x-2">
-          <span className="text-md font-medium text-gray-700">Show</span>
-            <select
-              value={pageSize}
-              onChange={e => {
-                setPageSize(Number(e.target.value))
-              }}
-              className="block w-14 p-1 text-sm text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            >
-              {
-                [10,25,50,100,500,1000,2000,5000, 10000].map(pageSize => (
-                  <option className='font-medium' key={pageSize} value={pageSize}>
-                    {pageSize}
-                  </option>
-              ))}
-            </select>
-          <span className="text-md text-gray-700">entries</span>
+          <span className="text-sm sm:text-md font-medium text-gray-700">Show</span>
+          <select
+            value={pageSize}
+            onChange={e => {
+              setPageSize(Number(e.target.value))
+            }}
+            className="block w-14 p-1 text-sm text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          >
+            {[10, 25, 50, 100, 500, 1000, 2000, 5000, 10000].map(pageSize => (
+              <option className='font-medium' key={pageSize} value={pageSize}>
+                {pageSize}
+              </option>
+            ))}
+          </select>
+          <span className="text-sm sm:text-md text-gray-700">entries</span>
         </div>
 
-        {/* Code for Table Search Button  */}
-        <div>
-          <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
+        {/* Code for Table Search Button */}
+        <div className='mt-4 sm:mt-0'>
+          <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
         </div>
       </div>
 
-      <div className='border border-gray-200 rounded-sm border-x my-3 mx-3'>
-        <table {...getTableProps()} className='w-full h-full text-gray-700 table-auto'> 
+      {/* Add responsive table container */}
+      <div className='border border-gray-200 rounded-sm border-x my-3 mx-3 overflow-x-auto'>
+        <table {...getTableProps()} className='w-full h-full text-gray-700 table-auto'>
           <thead>
-            {
-              headerGroups.map(headerGroup => (
-                <tr {...headerGroup.getHeaderGroupProps()} className='font-bold'>
-                  {headerGroup.headers.map(column => (
-                    <th {...column.getHeaderProps(column.getSortByToggleProps())} className='text-base font-bold'>
-                      {column.render('Header')}
-                      <span>
-                        {column.isSorted ? (column.isSortedDesc ? '⬇️': '⬆️'): ''}
-                      </span>
-                    </th>
-                  ))}
-                </tr>
-              ))}
+            {headerGroups.map(headerGroup => (
+              <tr {...headerGroup.getHeaderGroupProps()} className='font-bold'>
+                {headerGroup.headers.map(column => (
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())} className='text-base font-bold px-2 py-2'>
+                    {column.render('Header')}
+                    <span>
+                      {column.isSorted ? (column.isSortedDesc ? '⬇️' : '⬆️') : ''}
+                    </span>
+                  </th>
+                ))}
+              </tr>
+            ))}
           </thead>
 
           <tbody {...getTableBodyProps()}>
-            {
-              page.map(row => {
-                prepareRow(row)
-                return (
-                  <tr {...row.getRowProps()}>
-                    {row.cells.map((cell, index) => {
-                      return (
-                        <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                      )
-                    })}
-                  </tr>
-                )
-              })
-            }
+            {page.map(row => {
+              prepareRow(row)
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td {...cell.getCellProps()} className='text-sm sm:text-base px-2 py-2'>{cell.render('Cell')}</td>
+                    )
+                  })}
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
 
-      <div className='flex items-center justify-between'>
-        <div className="flex items-center justify-end px-4 py-3 text-gray-700">
+      <div className='flex flex-col sm:flex-row items-center justify-between'>
+        <div className="flex items-center justify-end px-4 py-3 text-sm sm:text-base text-gray-700">
           <p>
             Showing{' '}
-            <span className="font-bold">
-              {pageIndex * pageSize + 1}
-            </span>
-            {' '}
-            to{' '}
-            <span className="font-bold">
-              {Math.min((pageIndex + 1) * pageSize, data.length)}
-            </span>
-            {' '}
-            of{' '}
-            <span className="font-bold">
-              {data.length}
-            </span>
-            {' '}entries
+            <span className="font-bold">{pageIndex * pageSize + 1}</span>
+            {' '}to{' '}
+            <span className="font-bold">{Math.min((pageIndex + 1) * pageSize, data.length)}</span>
+            {' '}of{' '}
+            <span className="font-bold">{data.length}</span>{' '}entries
           </p>
         </div>
-        
-        <div className="flex px-4 py-3">
+
+        <div className="flex justify-center sm:justify-end px-4 py-3">
           <button
-            className="px-3 py-1 bg-gray-200 rounded mr-2"
+            className="px-3 py-1 bg-gray-200 rounded mr-2 text-sm sm:text-base"
             onClick={() => previousPage()}
             disabled={!canPreviousPage}
           >
@@ -279,20 +268,20 @@ const Orders = () => {
               <button
                 key={pageNumber}
                 onClick={() => gotoPage(pageNumber)}
-                className={`px-3 py-1 rounded ${pageIndex === pageNumber ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                className={`px-3 py-1 rounded text-sm sm:text-base ${pageIndex === pageNumber ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
               >
                 {pageNumber + 1}
               </button>
             ))}
           </div>
 
-          <button className="px-3 ml-2 py-1 bg-gray-200 rounded" onClick={() => nextPage()} disabled={!canNextPage}>
+          <button className="px-3 py-1 bg-gray-200 rounded ml-2 text-sm sm:text-base" onClick={() => nextPage()} disabled={!canNextPage}>
             Next
           </button>
+        </div>
+      </div>
+   </div>
 
-        </div>
-        </div>
-    </div>
   )
 }
 

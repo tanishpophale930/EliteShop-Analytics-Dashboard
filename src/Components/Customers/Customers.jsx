@@ -2,6 +2,7 @@ import React, {useMemo} from 'react'
 import {useTable, useSortBy, useGlobalFilter, usePagination, useRowSelect} from 'react-table'
 import { Link } from 'react-router-dom'
 import {format} from "date-fns"
+import * as XLSX from 'xlsx';
 import { customerData } from './CustomersData'
 import TableSearchButton from '../Buttons/TableSearchButton/TableSearchButton'
 import ExportButton from '../Buttons/ExportButton/ExportButton'
@@ -128,7 +129,7 @@ const Customers = () => {
   return (
     <div className='flex-1 border border-gray-200 bg-white rounded-sm'>
 
-<div className='flex items-center justify-between my-3 mx-3'>
+      <div className='flex items-center justify-between my-3 mx-3'>
         <p className='text-3xl font-bold tracking-wide'>Customers Report</p>
 
         {/* Code for Exporting in Excel  */}
