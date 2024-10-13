@@ -4,7 +4,7 @@ import Sidebar from './Sidebar/Sidebar'
 import Header from './Header'
 
 const Layout = () => {
-  const [Sidebartoggle, setSidebartoggle] = useState(true); // Sidebar hidden by default
+  const [Sidebartoggle, setSidebartoggle] = useState(false); // Sidebar hidden by default
 
   return (
     <div className='h-screen w-screen md:w-screen bg-neutral-100 overflow-hidden flex flex-row '>
