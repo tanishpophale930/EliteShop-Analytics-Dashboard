@@ -31,7 +31,7 @@ const SearchButton = ({ onSearch }) => {
       </div>
 
       {/* Search Icon for Small Screens */}
-      <div className="lg:hidden p-1.5 bg-slate-100 border-2 rounded-full flex items-center justify-center">
+      <div className="lg:hidden p-2 bg-slate-100 border-2 rounded-full flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
