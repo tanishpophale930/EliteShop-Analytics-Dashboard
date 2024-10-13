@@ -10,7 +10,7 @@ import ExportButton from '../Buttons/ExportButton/ExportButton'
 let GlobalFilter = ({filter, setFilter}) => {
   return (
     <div>
-      <TableSearchButton/>
+      <TableSearchButton filter={filter} setFilter={setFilter}/>
     </div>
   )
 }

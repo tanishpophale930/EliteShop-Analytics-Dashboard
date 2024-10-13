@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const TableSearchButton = () => {
+const TableSearchButton = ({ filter, setFilter}) => {
+
+
   return (
     <div>
         <div class="p-3 h-[35px] w-[270px] border-2 shadow-[2px_2px_20px_rgba(0,0,0,0.08)] rounded-full flex group items-center ">
@@ -21,7 +23,10 @@ const TableSearchButton = () => {
             
             <input
                 type="text"
-                class="outline-none text-[20px] bg-transparent w-full text-black font-normal px-4"
+                value={ filter || '' }
+                onChange={ (e) => setFilter(e.target.value) }
+                placeholder="Search"
+                className="outline-none text-[20px] bg-transparent w-full text-black font-normal px-4"
             />
         </div>
     </div>

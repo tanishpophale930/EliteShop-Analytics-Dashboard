@@ -7,13 +7,14 @@ import ExportButton from '../Buttons/ExportButton/ExportButton'
 import "../Buttons/CheckBox/CheckBox.css"
 import * as XLSX from 'xlsx';
 import TableSearchButton from '../Buttons/TableSearchButton/TableSearchButton'
+import SearchButton from '../Buttons/SearchButton/SearchButton.jsx'
 
 
 
 let GlobalFilter = ({filter, setFilter}) => {
   return (
     <div>
-      <TableSearchButton/>
+      <TableSearchButton filter={filter} setFilter={setFilter}/>
     </div>
   )
 }
