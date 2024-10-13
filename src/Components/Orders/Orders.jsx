@@ -213,7 +213,7 @@ const Orders = () => {
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()} className='font-bold'>
                 {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())} className='text-base font-bold px-2 py-2'>
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())} className='text-base md:text-lg font-bold px-2 py-2'>
                     {column.render('Header')}
                     <span>
                       {column.isSorted ? (column.isSortedDesc ? '⬇️' : '⬆️') : ''}
