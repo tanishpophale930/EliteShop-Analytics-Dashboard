@@ -19,7 +19,7 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
   const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
   return (
-    <div className="w-full bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
+    <div className="w-full bg-white h-16 px-4 flex border-b border-gray-200 justify-between">
 			
 			{/*  //Search Button Old
 			<div className="relative">
