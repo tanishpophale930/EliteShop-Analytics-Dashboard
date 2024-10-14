@@ -33,7 +33,7 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 			*/}
 
 
-			<div className='flex gap-3 md:gap-4 items-center'>
+			<div className='flex gap-4 md:gap-4 items-center'>
                 <div onClick={() => setSidebartoggle(!Sidebartoggle)} className='border-2 py-2 px-2 text-lg cursor-pointer rounded-full drop-shadow-3xl text-neutral-800 tracking-normal bg-slate-100 --tw-shadow-color: #f1f5f9; hover:bg-red-600 hover:text-white focus-outline-none'>
 				    <RxHamburgerMenu fontSize={20}  onClick={() => setSidebartoggle(!Sidebartoggle)}/>
 				</div>
