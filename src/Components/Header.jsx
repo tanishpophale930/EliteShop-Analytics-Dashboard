@@ -36,7 +36,7 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 
 			<div className='flex gap-4 md:gap-4 items-center'>
                 <div onClick={() => setSidebartoggle(!Sidebartoggle)} className='border-2 py-2 px-2 text-lg cursor-pointer rounded-full drop-shadow-3xl text-neutral-800 tracking-normal bg-slate-100 --tw-shadow-color: #f1f5f9; hover:bg-red-600 hover:text-white focus-outline-none'>
-				    <RxHamburgerMenu fontSize={20}  onClick={() => setSidebartoggle(!Sidebartoggle)}/>
+				    <RxHamburgerMenu fontSize={21}  onClick={() => setSidebartoggle(!Sidebartoggle)}/>
 				</div>
 				<SearchButton/>
 			</div>
@@ -63,7 +63,7 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 								leaveTo="opacity-0 translate-y-1"
 							>
 								<Popover.Panel className="absolute right-0 z-10 mt-1 transform w-52 md:w-72">
-									<div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 md:px-4 py-2.5">
+									<div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-3 md:px-4 py-2.5">
 										<strong className="text-gray-700 font-semibold text-lg">Messages</strong>
 										<div className="mt-2 py-1 text-md">No messages received.</div>
 									</div>
@@ -94,7 +94,7 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 								leaveTo="opacity-0 translate-y-1"
 							>
 								<Popover.Panel className="absolute right-0 z-10 mt-1 transform w-60 md:w-72">
-									<div className="bg-white rounded-md shadow-md ring-1 ring-black ring-opacity-5 px-2 md:px-4 py-2.5">
+									<div className="bg-white rounded-md shadow-md ring-1 ring-black ring-opacity-5 px-3 md:px-4 py-2.5">
 										<strong className="text-gray-700 font-semibold text-lg">Notifications</strong>
 										<div className="mt-2 py-1 text-md"> No notifications received.</div>
 									</div>
