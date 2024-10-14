@@ -4,7 +4,7 @@ import { TransactionsChartData } from './TransactionsChartData';
 
 const TransactionsChart = () => {
   return (
-    <div className='h-[10rem]  md:h-[23rem] flex flex-col flex-1 gap-3 py-4 bg-white border border-gray-200 rounded-sm'>
+    <div className='h-[100rem]  md:h-[23rem] flex flex-col flex-1 gap-3 py-4 bg-white border border-gray-200 rounded-sm'>
         <p className="text-gray-800  text-xl font-bold px-4 tracking-wide text-center font-roboto">Transactions</p>
         <div className='px-0 md:px-2 lg:px-3 w-full flex-1 text-xs md:text-xs lg:text-sm'>
             <ResponsiveContainer width="100%" height="100%">
