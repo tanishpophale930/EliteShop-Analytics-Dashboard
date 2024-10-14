@@ -62,7 +62,7 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 								leaveFrom="opacity-100 translate-y-0"
 								leaveTo="opacity-0 translate-y-1"
 							>
-								<Popover.Panel className="absolute right-0 z-10 mt-1 transform w-60 md:w-72">
+								<Popover.Panel className="absolute right-0 z-10 mt-1 transform w-52 md:w-72">
 									<div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-4 py-2.5">
 										<strong className="text-gray-700 font-semibold text-lg">Messages</strong>
 										<div className="mt-2 py-1 text-md">No messages received.</div>
