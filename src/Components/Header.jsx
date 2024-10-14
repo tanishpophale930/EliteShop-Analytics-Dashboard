@@ -4,9 +4,10 @@ import { HiOutlineBell, HiOutlineSearch, HiOutlineChatAlt } from 'react-icons/hi
 import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import Login from './Login'
 import classNames from 'classnames'
-import LogOut from './LogOut';
+import { CgProfile } from "react-icons/cg";
+import { IoSettingsOutline } from "react-icons/io5";
+import { IoLogOutOutline } from "react-icons/io5";
 import Notifications from './Buttons/Notifications/Notifications';
 import SearchButton from './Buttons/SearchButton/SearchButton';
 import MessagesButton from './Buttons/MessagesButton/MessagesButton';
@@ -61,7 +62,7 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 								leaveFrom="opacity-100 translate-y-0"
 								leaveTo="opacity-0 translate-y-1"
 							>
-								<Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-80">
+								<Popover.Panel className="absolute right-0 z-10 mt-1 transform w-80">
 									<div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
 										<strong className="text-gray-700 font-medium">Messages</strong>
 										<div className="mt-2 py-1 text-sm">No messages received.</div>
@@ -92,7 +93,7 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 								leaveFrom="opacity-100 translate-y-0"
 								leaveTo="opacity-0 translate-y-1"
 							>
-								<Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-80">
+								<Popover.Panel className="absolute right-0 z-10 mt-1 transform w-80">
 									<div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
 										<strong className="text-gray-700 font-medium">Notifications</strong>
 										<div className="mt-2 py-1 text-sm"> No notifications received.</div>
@@ -125,17 +126,18 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 						leaveTo="transform opacity-0 scale-95"
 					>
 					
-					<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 w-48 rounded-sm shadow-md p-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+					<Menu.Items className="origin-top-right z-10 absolute right-0 mt-3 w-40 rounded-md shadow-md p-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
 							<Menu.Item>
 								{({ active }) => (
 									<div
 										onClick={() => navigate('/profile')}
 										className={classNames(
 											active && 'bg-gray-100',
-											'active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
+											'active:bg-gray-200 flex items-center gap-3 font-medium  rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
 										)}
 									>
-										Your Profile
+									    <CgProfile />
+										<p>Your Profile</p>
 									</div>
 								)}
 							</Menu.Item>
@@ -145,10 +147,11 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 										onClick={() => navigate('/settings')}
 										className={classNames(
 											active && 'bg-gray-100',
-											'active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
+											'active:bg-gray-200 flex items-center gap-3 font-medium rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
 										)}
 									>
-										Settings
+										<IoSettingsOutline />
+										<p>Settings</p>
 									</div>
 								)}
 							</Menu.Item>
@@ -157,10 +160,11 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 									<div
 										className={classNames(
 											active && 'bg-gray-100',
-											'active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
+											'active:bg-gray-200 flex items-center gap-3 font-medium  rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
 										)} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
 									>
-										Sign out
+										<IoLogOutOutline />
+										<p>Sign out</p>
 									</div>
 								)}
 							</Menu.Item>
