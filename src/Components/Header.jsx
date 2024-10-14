@@ -40,7 +40,7 @@ const Header = ({Sidebartoggle, setSidebartoggle}) => {
 				<SearchButton/>
 			</div>
 
-			<div className="flex items-center gap-3 mr-2">
+			<div className="flex items-center gap-3 mr-2.5 md:mr-2">
 				<Popover className="relative">
 					{({ open }) => (
 						<>
