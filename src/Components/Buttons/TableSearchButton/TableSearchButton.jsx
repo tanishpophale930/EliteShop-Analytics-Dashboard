@@ -5,7 +5,7 @@ const TableSearchButton = ({ filter, setFilter}) => {
 
   return (
     <div>
-        <div class="p-3 h-[35px] w-[270px] border-2 shadow-[2px_2px_20px_rgba(0,0,0,0.08)] rounded-full flex group items-center ">
+        <div class="p-3 h-[45px] w-[270px] border-2 shadow-[2px_2px_20px_rgba(0,0,0,0.08)] rounded-full flex group items-center ">
             <div class="flex items-center justify-center fill-neutral-600">
                 <svg
                 xmlns="http://www.w3.org/2000/svg"

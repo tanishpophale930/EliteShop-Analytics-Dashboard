@@ -108,6 +108,7 @@ let COLUMNS = [
   {
     Header: "Total Amount",
     accessor: 'transaction_amount',
+    Cell: ({ value }) => <p className='text-gray-700 font-semibold hover:no-underline'>{value}</p>,
   },
   {
     Header: 'Mode of Payment',

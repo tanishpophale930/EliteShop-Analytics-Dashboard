@@ -15,11 +15,11 @@ export default function Sidebar({Sidebartoggle}){
     const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
 	return (
-    <div className={`lg-block ${Sidebartoggle ? "block" : "hidden"}  w-60 flex flex-col bg-neutral-900  h-full`} >
+    <div className={`${Sidebartoggle ? "block" : "hidden"}  w-60 flex flex-col bg-neutral-900  h-full`} >
 
         <div className='flex items-center mt-6 mb-2 gap-3 ml-4  '>
           <FcBullish size={24}/>
-          <p className='text-white text-lg'> EliteShop </p>
+          <Link to="/" className='text-white text-lg hover:no-underline'> EliteShop </Link>
         </div>
 
 

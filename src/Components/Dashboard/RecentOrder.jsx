@@ -22,7 +22,7 @@ let getOrderStatus = (status) => {
               {status.replaceAll('_', ' ').toLowerCase()}
             </span>
           )
-        case 'OUT FOR Delivery':
+        case 'OUT FOR DELIVERY':
           return(
             <span className='w-28 inline-block text-center capitalize py-1 px-2 rounded-md text-xs border border-yellow-600 text-yellow-600 bg-yellow-100'>
                 {status.replaceAll('_', ' ').toLowerCase()}
@@ -71,7 +71,7 @@ const RecentOrder = () => {
                   <td><Link to={`/order/${ele.id}`}>{ele.id}</Link></td>
                   <td><Link to="">{ele.name}</Link></td>
                   <td>{ele.orderDate}</td>
-                  <td>{ele.orderTotal}</td>
+                  <td className='font-semibold '>{ele.orderTotal}</td>
                   <td>{ele.shippingAdress}</td>
                   <td>{getOrderStatus(ele.orderStatus)}</td>
                 </tr>

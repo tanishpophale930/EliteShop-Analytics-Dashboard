@@ -55,7 +55,7 @@ let getOrderStatus = (status) => {
       
       default:
         return(
-          <span className='w-32 capitalize rounded-md border border-gray-600 text-center inline-block text-gray-600 bg-gray-100 text-sm px-2 py-1'>
+          <span className='w-32 capitalize rounded-md border border-green-800 text-center inline-block text-green-800 bg-green-100 text-sm px-2 py-1'>
               {status.replaceAll('_', ' ').toLowerCase()}
           </span>
         )
@@ -96,6 +96,7 @@ let COLUMNS = [
   {
     Header: 'Order Total',
     accessor: 'orderTotal',
+    Cell: ({ value }) => <p className='text-gray-700 font-semibold hover:no-underline'>{value}</p>,
   },
   {
     Header: 'Shipping Address',
